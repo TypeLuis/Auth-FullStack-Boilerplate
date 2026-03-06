@@ -1,0 +1,51 @@
+# @baseUrl = http://localhost:3040
+@baseUrl = http://192.168.8.166:3040
+
+# -------------------------
+# 1) REGISTER (returns token)
+# -------------------------
+
+# @name register
+POST {{baseUrl}}/api/users
+Content-Type: application/json
+
+{
+  "name": "Test User3",
+  "email": "test3@example.com",
+  "password": "password123"
+}
+
+###
+# Token from register response (VSCode REST Client)
+@token = {{register.response.body.token}}
+
+# -------------------------
+# 2) LOGIN (optional, also returns token)
+# -------------------------
+
+###
+# @name login
+POST {{baseUrl}}/api/auth
+Content-Type: application/json
+
+{
+  "email": "test2@example.com",
+  "password": "password123"
+}
+
+@token = {{login.response.body.token}}
+
+###
+# If you prefer login token instead of register token, swap:
+# @token = {{login.response.body.token}}
+
+# -------------------------
+# 3) WHO AM I (requires token)
+# -------------------------
+
+# @name me
+GET {{baseUrl}}/api/auth
+x-auth-token:  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjlhNjBlNTNiMTA0NDI5MDUzYzZkNDRjIn0sImlhdCI6MTc3MjUxMTgyOSwiZXhwIjoxNzcyNTIyNjI5fQ.5h80fH51V_KLpYXRQfKtTAnPkfITZWFgwQ4V4cbMeOc
+
+###
+@userId = {{me.response.body._id}}
