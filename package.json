@@ -12,7 +12,6 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "initialize": "npm run env --workspace=Backend",
     "dev": "concurrently -k -n BACKEND,FRONTEND -c blue,green \"npm run dev --workspace=Backend\" \"npm run dev --workspace=Frontend\""
- 
   },
   "repository": {
     "type": "git",
@@ -25,5 +24,8 @@
   "bugs": {
     "url": "https://github.com/TypeLuis/Auth-FullStack-Boilerplate/issues"
   },
-  "homepage": "https://github.com/TypeLuis/Auth-FullStack-Boilerplate#readme"
+  "homepage": "https://github.com/TypeLuis/Auth-FullStack-Boilerplate#readme",
+  "dependencies": {
+    "concurrently": "^9.2.1"
+  }
 }
